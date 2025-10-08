@@ -8,17 +8,18 @@ def encrypt(plaintext,keyshift):
 
 def decrypt(ciphertext,key):
     plaintext=""
-    r=0
+    keyshift=key
     for i in range(len(ciphertext)):
-        if i<=len(key):
+        if i<len(key):
             x=(ord(ciphertext[i])-ord(key[i])+26)%26
             x+=ord('A') 
             plaintext+=chr(x)
+            keyshift+=chr(x)
         else:
-            x=(ord(ciphertext[i])-ord(plaintext[r])+26)%26
-            x+=ord('A')
-            plaintext+=chr(x)
-            r+=1
+            y=(ord(ciphertext[i])-ord(keyshift[i])+26)%26
+            y+=ord('A')
+            plaintext+=chr(y)
+            keyshift+=chr(y)
     return plaintext
 
 # ask if user wants to encrypt or decrypt
