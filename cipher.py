@@ -1,18 +1,24 @@
 def encrypt(plaintext,keyshift):
     cipher=""
     for i in range(len(keyshift)):
-        x=(ord(plaintext[i])+ord(keyshift[i]))%26
+        x=(ord(plaintext[i])+ord(keyshift[i]))%26 #mod 26 to cycle back to A-Z
         x+=ord('A')
         cipher+=chr(x)
     return cipher
 
 def decrypt(ciphertext,key):
     plaintext=""
-    keyshift=key+ciphertext[0:len(ciphertext)-len(key)]
+    r=0
     for i in range(len(ciphertext)):
-        x=(ord(ciphertext[i])-ord(keyshift[i])+26)%26
-        x+=ord('A')
-        plaintext+=chr(x)
+        if i<=len(key):
+            x=(ord(ciphertext[i])-ord(key[i])+26)%26
+            x+=ord('A') 
+            plaintext+=chr(x)
+        else:
+            x=(ord(ciphertext[i])-ord(plaintext[r])+26)%26
+            x+=ord('A')
+            plaintext+=chr(x)
+            r+=1
     return plaintext
 
 # ask if user wants to encrypt or decrypt
