@@ -1,10 +1,10 @@
-    """_
+"""
     This is a program that encrypts or decrypts a message using an autokey cipher.
 
     The user is prompted to choose between encryption and decryption,
     and to input the necessary plaintext/ciphertext and key.
     The program then performs the chosen operation and outputs the result.
-    """
+"""
 def encrypt(plaintext,keyshift):
     cipher=""
     for i in range(len(keyshift)):
