@@ -1,3 +1,10 @@
+    """_
+    This is a program that encrypts or decrypts a message using an autokey cipher.
+
+    The user is prompted to choose between encryption and decryption,
+    and to input the necessary plaintext/ciphertext and key.
+    The program then performs the chosen operation and outputs the result.
+    """
 def encrypt(plaintext,keyshift):
     cipher=""
     for i in range(len(keyshift)):
@@ -10,14 +17,12 @@ def encrypt(plaintext,keyshift):
 
 def decrypt(ciphertext,key):
     plaintext=""
-    keyshifter=key
     for i in range(len(ciphertext)):
         if i<len(key):
             #get ASCII value of ciphertext and key at i for first len(key) characters
             x=(ord(ciphertext[i])-ord(key[i])+26)%26
             x+=ord('A') 
             plaintext+=chr(x)
-            keyshifter=key+chr(x)
         else:
             #get ASCII value of ciphertext and previous plaintext character for rest
             y=(ord(ciphertext[i])-ord(plaintext[i-len(key)])+26)%26
